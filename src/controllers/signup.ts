@@ -9,8 +9,11 @@ export class SignUpController {
   }
 
   public async create (req: Request, res: Response): Promise<any> {
-    const user = await this.service.create(req.body)
-    console.log(user)
-    return res.status(200).json('meu cu')
+    try {
+      const user = await this.service.create(req.body)
+      return res.status(200).json(user)
+    } catch (error) {
+      return res.status(error.status).json({ message: error.message })
+    }
   }
 }
