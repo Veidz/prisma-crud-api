@@ -11,13 +11,10 @@ const userPayload: UserPayload = {
 }
 
 describe('POST /signup', () => {
-  test('Should return correct message if user is successfully created', async () => {
+  test('Should return status 201 with correct message if user is successfully created', async () => {
     await request(app)
-      .post('/singup')
+      .post('/signup')
       .send(userPayload)
-      .set('Accept', 'application/json')
-      .expect((res) => {
-        res.body.message = 'User successfully created'
-      })
+      .expect(201)
   })
 })
