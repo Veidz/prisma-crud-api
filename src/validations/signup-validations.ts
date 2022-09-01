@@ -1,4 +1,5 @@
 import { Validators } from '../protocols/validators'
+import emailValidator from 'email-validator'
 
 export class SignUpValidations implements Validators {
   public isNameValid (name: string): boolean {
@@ -8,7 +9,7 @@ export class SignUpValidations implements Validators {
   }
 
   public isEmailValid (email: string): boolean {
-    return true
+    return emailValidator.validate(email)
   }
 
   public isPasswordValid (password: string): boolean {
