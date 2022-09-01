@@ -1,5 +1,5 @@
 import express from 'express'
-import signUpRoute from './routes/signup'
+import signUpRoute from '../routes/signup'
 
 class App {
   public app: express.Express
@@ -8,8 +8,6 @@ class App {
     this.app = express()
 
     this.config()
-
-    this.app.get('/', (req, res) => res.json({ ok: true }))
   }
 
   private config (): void {
