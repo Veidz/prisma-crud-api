@@ -1,4 +1,4 @@
-import prisma from './prisma'
+import prisma from '../database/client'
 import { Users } from '@prisma/client'
 import { UserPayload } from '../protocols/user-payload'
 

@@ -2,8 +2,8 @@ import { BadRequest } from '../errors/bad-request'
 import { Validators } from '../protocols/validators'
 import { UserPayload } from '../protocols/user-payload'
 import { SignUpValidations } from '../validations/signup-validations'
-import create from '../database/create'
-import findUnique from '../database/find-unique'
+import create from '../repository/create'
+import findUnique from '../repository/find-unique'
 import { Conflit } from '../errors/conflit'
 
 export class SignUpService {

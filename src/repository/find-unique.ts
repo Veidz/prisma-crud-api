@@ -1,4 +1,4 @@
-import prisma from './prisma'
+import prisma from '../database/client'
 import { Users } from '@prisma/client'
 
 const findUnique = async (userEmail: string): Promise<Users> => {
