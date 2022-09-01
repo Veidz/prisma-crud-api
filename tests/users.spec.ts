@@ -23,20 +23,34 @@ const usersWithoutPassword: UsersWithoutPassword[] = [
 ]
 
 describe('UsersService', () => {
-  test('Should return correct error if no users are in the database', async () => {
-    try {
+  describe('findMany method', () => {
+    test('Should return correct error if no users are in the database', async () => {
+      try {
+        const sut = new UsersService()
+        jest.spyOn(prismaMock.users, 'findMany').mockResolvedValue([])
+        await sut.findMany()
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No users in the database'))
+      }
+    })
+
+    test('Should return correct users from the database', async () => {
       const sut = new UsersService()
-      jest.spyOn(prismaMock.users, 'findMany').mockResolvedValue([])
-      await sut.findMany()
-    } catch (error) {
-      expect(error).toEqual(new NotFound('No users in the database'))
-    }
+      jest.spyOn(prismaMock.users, 'findMany').mockResolvedValue(usersDB)
+      const users = await sut.findMany()
+      expect(users).toEqual(usersWithoutPassword)
+    })
   })
 
-  test('Should return correct users from the database', async () => {
-    const sut = new UsersService()
-    jest.spyOn(prismaMock.users, 'findMany').mockResolvedValue(usersDB)
-    const users = await sut.findMany()
-    expect(users).toEqual(usersWithoutPassword)
+  describe('findByEmail method', () => {
+    test('Should return correct error if no user is in the database', async () => {
+      try {
+        const sut = new UsersService()
+        jest.spyOn(prismaMock.users, 'findUnique').mockResolvedValue(null)
+        await sut.findByEmail('any_email@email.com')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No user found'))
+      }
+    })
   })
 })
