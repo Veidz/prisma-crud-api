@@ -24,4 +24,16 @@ describe('SignUpService', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.message).toEqual('Email is required')
   })
+
+  test('Should return status 400 with correct message if no password is provided', async () => {
+    const sut = new SignUpService()
+    const httpRequest = {
+      name: 'any_name',
+      email: 'any_email@email.com',
+      passwordConfirmation: 'any_password'
+    }
+    const httpResponse = await sut.create(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.message).toEqual('Password is required')
+  })
 })
