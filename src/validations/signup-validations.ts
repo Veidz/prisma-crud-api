@@ -13,6 +13,7 @@ export class SignUpValidations implements Validators {
   }
 
   public isPasswordValid (password: string): boolean {
+    if (password.length < 6) return false
     return true
   }
 }

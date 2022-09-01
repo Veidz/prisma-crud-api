@@ -19,7 +19,7 @@ export class SignUpService {
     const { name, email, password, passwordConfirmation } = userPayload
     if (!this.validators.isNameValid(name)) throw new BadRequest('Invalid name')
     if (!this.validators.isEmailValid(email)) throw new BadRequest('Invalid email')
-    if (!this.validators.isPasswordValid(email)) throw new BadRequest('Invalid password')
+    if (!this.validators.isPasswordValid(password)) throw new BadRequest('Invalid password')
     if (password !== passwordConfirmation) throw new BadRequest('Invalid passwordConfirmation')
   }
 }
