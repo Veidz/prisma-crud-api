@@ -20,5 +20,7 @@ export class SignUpService {
     if (!isNameValid) return { statusCode: 400, message: 'Invalid name' }
     const isEmailValid = this.validators.isEmailValid(email)
     if (!isEmailValid) return { statusCode: 400, message: 'Invalid email' }
+    const isPasswordValid = this.validators.isPasswordValid(email)
+    if (!isPasswordValid) return { statusCode: 400, message: 'Invalid password' }
   }
 }
