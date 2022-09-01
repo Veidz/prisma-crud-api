@@ -4,3 +4,9 @@ export interface UserPayload {
   password: string
   passwordConfirmation: string
 }
+
+export interface UserPayloadDB {
+  name: string
+  email: string
+  password: string
+}

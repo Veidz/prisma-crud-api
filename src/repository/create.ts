@@ -1,8 +1,8 @@
 import prisma from '../database/client'
 import { Users } from '@prisma/client'
-import { UserPayload } from '../protocols/user-payload'
+import { UserPayloadDB } from '../protocols/user-payload'
 
-const create = async (userPayload: UserPayload): Promise<Users> => {
+const create = async (userPayload: UserPayloadDB): Promise<Users> => {
   try {
     const user = await prisma.users.create({ data: userPayload })
     return user

@@ -25,11 +25,11 @@ export class SignUpService {
     if (!this.validators.isPasswordValid(password)) throw new BadRequest('Invalid password')
     if (password !== passwordConfirmation) throw new BadRequest('Invalid passwordConfirmation')
 
-    delete userPayload.passwordConfirmation
+    const userPayloadDB = { name, email, password }
 
     const userExists = await findUnique(email)
     if (userExists) throw new Conflit('User already registered')
 
-    await create(userPayload)
+    await create(userPayloadDB)
   }
 }
