@@ -1,3 +1,4 @@
+import { BadRequest } from '../errors/bad-request'
 import { SignUpService } from './signup'
 
 interface SutTypes {
@@ -11,54 +12,62 @@ const makeSut = (): SutTypes => {
 
 describe('SignUpService', () => {
   test('Should return status 400 with correct message if no name is provided', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      name: '',
-      email: 'any_email@email.com',
-      password: 'any_password',
-      passwordConfirmation: 'any_password'
+    try {
+      const { sut } = makeSut()
+      const httpRequest = {
+        name: '',
+        email: 'any_email@email.com',
+        password: 'any_password',
+        passwordConfirmation: 'any_password'
+      }
+      await sut.create(httpRequest)
+    } catch (error) {
+      expect(error).toEqual(new BadRequest('name is required'))
     }
-    const httpResponse = await sut.create(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('name is required')
   })
 
   test('Should return status 400 with correct message if no email is provided', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      name: 'any_name',
-      email: '',
-      password: 'any_password',
-      passwordConfirmation: 'any_password'
+    try {
+      const { sut } = makeSut()
+      const httpRequest = {
+        name: 'any_name',
+        email: '',
+        password: 'any_password',
+        passwordConfirmation: 'any_password'
+      }
+      await sut.create(httpRequest)
+    } catch (error) {
+      expect(error).toEqual(new BadRequest('email is required'))
     }
-    const httpResponse = await sut.create(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('email is required')
   })
 
   test('Should return status 400 with correct message if no password is provided', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      name: 'any_name',
-      email: 'any_email@email.com',
-      password: '',
-      passwordConfirmation: 'any_password'
+    try {
+      const { sut } = makeSut()
+      const httpRequest = {
+        name: 'any_name',
+        email: 'any_email@email.com',
+        password: '',
+        passwordConfirmation: 'any_password'
+      }
+      await sut.create(httpRequest)
+    } catch (error) {
+      expect(error).toEqual(new BadRequest('password is required'))
     }
-    const httpResponse = await sut.create(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('password is required')
   })
 
   test('Should return status 400 with correct message if no password is provided', async () => {
-    const { sut } = makeSut()
-    const httpRequest = {
-      name: 'any_name',
-      email: 'any_email@email.com',
-      password: 'any_password',
-      passwordConfirmation: ''
+    try {
+      const { sut } = makeSut()
+      const httpRequest = {
+        name: 'any_name',
+        email: 'any_email@email.com',
+        password: 'any_password',
+        passwordConfirmation: ''
+      }
+      await sut.create(httpRequest)
+    } catch (error) {
+      expect(error).toEqual(new BadRequest('passwordConfirmation is required'))
     }
-    const httpResponse = await sut.create(httpRequest)
-    expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('passwordConfirmation is required')
   })
 })

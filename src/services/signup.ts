@@ -1,6 +1,7 @@
+import { BadRequest } from '../errors/bad-request'
 import { SignUpValidators } from '../protocols/signup-validators'
 import { UserPayload } from '../protocols/user-payload'
-import { UserResponse } from '../protocols/user-response'
+// import { UserResponse } from '../protocols/user-response'
 import { SignUpValidations } from '../validations/signup-validations'
 
 export class SignUpService {
@@ -10,15 +11,16 @@ export class SignUpService {
     this.validators = new SignUpValidations()
   }
 
-  public create (userPayload: UserPayload): UserResponse {
+  public create (userPayload: UserPayload): any {
     const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
     for (const field of requiredFields) {
-      if (!userPayload[field]) return { statusCode: 400, message: `${field} is required` }
+      if (!userPayload[field]) throw new BadRequest(`${field} is required`)
     }
+
     const { name, email, password, passwordConfirmation } = userPayload
-    if (!this.validators.isNameValid(name)) return { statusCode: 400, message: 'Invalid name' }
-    if (!this.validators.isEmailValid(email)) return { statusCode: 400, message: 'Invalid email' }
-    if (!this.validators.isPasswordValid(email)) return { statusCode: 400, message: 'Invalid password' }
-    if (password !== passwordConfirmation) return { statusCode: 400, message: 'Invalid passwordConfirmation' }
+    if (!this.validators.isNameValid(name)) throw new BadRequest('Invalid name')
+    if (!this.validators.isEmailValid(email)) throw new BadRequest('Invalid email')
+    if (!this.validators.isPasswordValid(email)) throw new BadRequest('Invalid password')
+    if (password !== passwordConfirmation) throw new BadRequest('Invalid passwordConfirmation')
   }
 }
