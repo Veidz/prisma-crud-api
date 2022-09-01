@@ -1,8 +1,17 @@
 import { SignUpService } from './signup'
 
+interface SutTypes {
+  sut: SignUpService
+}
+
+const makeSut = (): SutTypes => {
+  const sut = new SignUpService()
+  return { sut }
+}
+
 describe('SignUpService', () => {
   test('Should return status 400 with correct message if no name is provided', async () => {
-    const sut = new SignUpService()
+    const { sut } = makeSut()
     const httpRequest = {
       email: 'any_email@email.com',
       password: 'any_password',
@@ -14,7 +23,7 @@ describe('SignUpService', () => {
   })
 
   test('Should return status 400 with correct message if no email is provided', async () => {
-    const sut = new SignUpService()
+    const { sut } = makeSut()
     const httpRequest = {
       name: 'any_name',
       password: 'any_password',
@@ -26,7 +35,7 @@ describe('SignUpService', () => {
   })
 
   test('Should return status 400 with correct message if no password is provided', async () => {
-    const sut = new SignUpService()
+    const { sut } = makeSut()
     const httpRequest = {
       name: 'any_name',
       email: 'any_email@email.com',
@@ -38,7 +47,7 @@ describe('SignUpService', () => {
   })
 
   test('Should return status 400 with correct message if no password is provided', async () => {
-    const sut = new SignUpService()
+    const { sut } = makeSut()
     const httpRequest = {
       name: 'any_name',
       email: 'any_email@email.com',
