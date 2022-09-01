@@ -1,1 +1,1 @@
-# Template to create Clean Node API's
+# CRUD Node API using Prisma
