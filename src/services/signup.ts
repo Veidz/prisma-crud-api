@@ -3,6 +3,8 @@ import { Validators } from '../protocols/validators'
 import { UserPayload } from '../protocols/user-payload'
 import { SignUpValidations } from '../validations/signup-validations'
 import create from '../database/create'
+import findUnique from '../database/find-unique'
+import { Conflit } from '../errors/conflit'
 
 export class SignUpService {
   private readonly validators: Validators
@@ -24,6 +26,10 @@ export class SignUpService {
     if (password !== passwordConfirmation) throw new BadRequest('Invalid passwordConfirmation')
 
     delete userPayload.passwordConfirmation
+
+    const userExists = await findUnique(email)
+    if (userExists) throw new Conflit('User already registered')
+
     await create(userPayload)
   }
 }
