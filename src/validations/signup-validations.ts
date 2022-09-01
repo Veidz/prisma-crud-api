@@ -1,6 +1,6 @@
-import { SignUpValidators } from '../protocols/signup-validators'
+import { Validators } from '../protocols/validators'
 
-export class SignUpValidations implements SignUpValidators {
+export class SignUpValidations implements Validators {
   public isNameValid (name: string): boolean {
     return true
   }

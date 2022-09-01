@@ -1,11 +1,10 @@
 import { BadRequest } from '../errors/bad-request'
-import { SignUpValidators } from '../protocols/signup-validators'
+import { Validators } from '../protocols/validators'
 import { UserPayload } from '../protocols/user-payload'
-// import { UserResponse } from '../protocols/user-response'
 import { SignUpValidations } from '../validations/signup-validations'
 
 export class SignUpService {
-  private readonly validators: SignUpValidators
+  private readonly validators: Validators
 
   constructor () {
     this.validators = new SignUpValidations()
