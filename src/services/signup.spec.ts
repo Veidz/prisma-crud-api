@@ -10,7 +10,7 @@ describe('SignUpService', () => {
     }
     const httpResponse = await sut.create(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('Name is required')
+    expect(httpResponse.message).toEqual('name is required')
   })
 
   test('Should return status 400 with correct message if no email is provided', async () => {
@@ -22,7 +22,7 @@ describe('SignUpService', () => {
     }
     const httpResponse = await sut.create(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('Email is required')
+    expect(httpResponse.message).toEqual('email is required')
   })
 
   test('Should return status 400 with correct message if no password is provided', async () => {
@@ -34,6 +34,18 @@ describe('SignUpService', () => {
     }
     const httpResponse = await sut.create(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.message).toEqual('Password is required')
+    expect(httpResponse.message).toEqual('password is required')
+  })
+
+  test('Should return status 400 with correct message if no password is provided', async () => {
+    const sut = new SignUpService()
+    const httpRequest = {
+      name: 'any_name',
+      email: 'any_email@email.com',
+      password: 'any_password'
+    }
+    const httpResponse = await sut.create(httpRequest)
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.message).toEqual('passwordConfirmation is required')
   })
 })
