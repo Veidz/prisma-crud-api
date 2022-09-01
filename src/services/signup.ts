@@ -1,10 +1,7 @@
-import { BadRequest } from '../errors/bad-request'
-import { Validators } from '../protocols/validators'
-import { UserPayload } from '../protocols/user-payload'
+import { BadRequest, Conflit } from '../errors'
+import { Validators, UserPayload } from '../protocols'
 import { SignUpValidations } from '../validations/signup-validations'
-import create from '../repository/create'
-import findUnique from '../repository/find-unique'
-import { Conflit } from '../errors/conflit'
+import { create, findUnique } from '../repository'
 
 export class SignUpService {
   private readonly validators: Validators

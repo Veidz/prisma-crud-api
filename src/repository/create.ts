@@ -2,7 +2,7 @@ import prisma from '../database/client'
 import { Users } from '@prisma/client'
 import { UserPayloadDB } from '../protocols/user-payload'
 
-const create = async (userPayload: UserPayloadDB): Promise<Users> => {
+export const create = async (userPayload: UserPayloadDB): Promise<Users> => {
   try {
     const user = await prisma.users.create({ data: userPayload })
     return user
@@ -11,5 +11,3 @@ const create = async (userPayload: UserPayloadDB): Promise<Users> => {
     await prisma.$disconnect()
   }
 }
-
-export default create
