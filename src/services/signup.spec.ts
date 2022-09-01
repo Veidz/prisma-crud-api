@@ -13,6 +13,7 @@ describe('SignUpService', () => {
   test('Should return status 400 with correct message if no name is provided', async () => {
     const { sut } = makeSut()
     const httpRequest = {
+      name: '',
       email: 'any_email@email.com',
       password: 'any_password',
       passwordConfirmation: 'any_password'
@@ -26,6 +27,7 @@ describe('SignUpService', () => {
     const { sut } = makeSut()
     const httpRequest = {
       name: 'any_name',
+      email: '',
       password: 'any_password',
       passwordConfirmation: 'any_password'
     }
@@ -39,6 +41,7 @@ describe('SignUpService', () => {
     const httpRequest = {
       name: 'any_name',
       email: 'any_email@email.com',
+      password: '',
       passwordConfirmation: 'any_password'
     }
     const httpResponse = await sut.create(httpRequest)
@@ -51,7 +54,8 @@ describe('SignUpService', () => {
     const httpRequest = {
       name: 'any_name',
       email: 'any_email@email.com',
-      password: 'any_password'
+      password: 'any_password',
+      passwordConfirmation: ''
     }
     const httpResponse = await sut.create(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
