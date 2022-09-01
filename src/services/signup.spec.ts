@@ -26,7 +26,7 @@ const makeValidators = (): Validators => {
 
 const makeSut = (): SutTypes => {
   const validators = makeValidators()
-  const sut = new SignUpService()
+  const sut = new SignUpService(validators)
   return { sut, validators }
 }
 

@@ -9,8 +9,8 @@ import { Conflit } from '../errors/conflit'
 export class SignUpService {
   private readonly validators: Validators
 
-  constructor () {
-    this.validators = new SignUpValidations()
+  constructor (validators = new SignUpValidations()) {
+    this.validators = validators
   }
 
   public async create (userPayload: UserPayload): Promise<void> {
