@@ -14,4 +14,13 @@ export class UsersService {
     }
     return usersWithoutPassword
   }
+
+  public async findByEmail (email: string): Promise<UsersWithoutPassword> {
+    const user = await prisma.users.findUnique({ where: { email } })
+    if (!user) throw new NotFound('No user found')
+
+    const { id, password, created_at: createdAt, updated_at: updatedAt, ...rest } = user
+    const userWithoutPassword = rest
+    return userWithoutPassword
+  }
 }
