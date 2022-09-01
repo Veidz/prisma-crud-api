@@ -1,6 +1,6 @@
-import { BadRequest } from '../errors/bad-request'
-import { Validators } from '../protocols/validators'
-import { SignUpService } from './signup'
+import { BadRequest } from '../src/errors/bad-request'
+import { Validators } from '../src/protocols/validators'
+import { SignUpService } from '../src/services/signup'
 
 interface SutTypes {
   sut: SignUpService
