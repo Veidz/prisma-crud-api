@@ -122,4 +122,20 @@ describe('SignUpService', () => {
       expect(error).toEqual(new BadRequest('Invalid email'))
     }
   })
+
+  test('Should return status 400 with correct message if invalid password is provided', async () => {
+    try {
+      const { sut, validators } = makeSut()
+      jest.spyOn(validators, 'isPasswordValid').mockReturnValueOnce(false)
+      const httpRequest = {
+        name: 'any_name',
+        email: 'any_email@email.com',
+        password: 'invalid_password',
+        passwordConfirmation: 'invalid_password'
+      }
+      await sut.create(httpRequest)
+    } catch (error) {
+      expect(error).toEqual(new BadRequest('Invalid password'))
+    }
+  })
 })
