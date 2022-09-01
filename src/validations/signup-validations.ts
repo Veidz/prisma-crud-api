@@ -4,4 +4,8 @@ export class SignUpValidations implements SignUpValidators {
   public isNameValid (name: string): boolean {
     return true
   };
+
+  public isEmailValid (email: string): boolean {
+    return true
+  };
 }

@@ -15,8 +15,10 @@ export class SignUpService {
     for (const field of requiredFields) {
       if (!userPayload[field]) return { statusCode: 400, message: `${field} is required` }
     }
-    const { name } = userPayload
+    const { name, email } = userPayload
     const isNameValid = this.validators.isNameValid(name)
     if (!isNameValid) return { statusCode: 400, message: 'Invalid name' }
+    const isEmailValid = this.validators.isEmailValid(email)
+    if (!isEmailValid) return { statusCode: 400, message: 'Invalid email' }
   }
 }
