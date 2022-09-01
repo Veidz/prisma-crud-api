@@ -1,6 +1,5 @@
 import express from 'express'
-import signUpRoute from '../routes/signup'
-import usersRoute from '../routes/users'
+import { signUpRoute, usersRoute } from '../routes'
 
 class App {
   public app: express.Express

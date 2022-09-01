@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express'
-import { signup } from '../middlewares/signup'
+import { signUp } from '../middlewares/signup'
 
-const router = Router()
+const signUpRoute = Router()
 
-router.post('/signup', signup.create)
+signUpRoute.post('/signup', signUp.create)
 
-export default router
+export { signUpRoute }

@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express'
 import { users } from '../middlewares/users'
 
-const router = Router()
+const usersRoute = Router()
 
-router.get('/users', users.findMany)
+usersRoute.get('/users', users.findMany)
 
-export default router
+export { usersRoute }
