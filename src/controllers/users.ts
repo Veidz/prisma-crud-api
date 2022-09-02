@@ -16,4 +16,13 @@ export class UsersController {
       return res.status(error.status).json({ message: error.message })
     }
   }
+
+  public async findByEmail (req: Request, res: Response): Promise<any> {
+    try {
+      const user = await this.service.findByEmail(req.params.email)
+      return res.status(200).json(user)
+    } catch (error) {
+      return res.status(error.status).json({ message: error.message })
+    }
+  }
 }
