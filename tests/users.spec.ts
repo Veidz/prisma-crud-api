@@ -92,4 +92,25 @@ describe('UsersService', () => {
       }
     })
   })
+
+  describe('exclude method', () => {
+    test('Should return correct error if no email is provided', async () => {
+      try {
+        const sut = new UsersService()
+        await sut.exclude('')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No email provided'))
+      }
+    })
+
+    test('Should return correct error if no user is found', async () => {
+      try {
+        const sut = new UsersService()
+        jest.spyOn(prismaMock.users, 'findUnique').mockResolvedValue(null)
+        await sut.exclude('any_email@email.com')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No user found'))
+      }
+    })
+  })
 })
