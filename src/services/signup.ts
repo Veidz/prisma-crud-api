@@ -2,6 +2,7 @@ import { BadRequest, Conflit } from '../errors'
 import { Validators, UserPayload } from '../protocols'
 import { SignUpValidations } from '../validations/signup-validations'
 import { create, findUnique } from '../repository'
+import bcrypt from 'bcrypt'
 
 export class SignUpService {
   private readonly validators: Validators
@@ -22,7 +23,9 @@ export class SignUpService {
     if (!this.validators.isPasswordValid(password)) throw new BadRequest('Invalid password')
     if (password !== passwordConfirmation) throw new BadRequest('Invalid passwordConfirmation')
 
-    const userPayloadDB = { name, email, password }
+    const hashedPassword = await bcrypt.hash(password, 12)
+
+    const userPayloadDB = { name, email, password: hashedPassword }
 
     const userExists = await findUnique(email)
     if (userExists) throw new Conflit('User already registered')

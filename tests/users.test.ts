@@ -23,12 +23,14 @@ const userWithoutPassword: UsersWithoutPassword = {
 describe('ROUTE /users', () => {
   describe('GET /users', () => {
     beforeAll(async () => {
+      const deleteUsers = prisma.users.deleteMany()
+      await prisma.$transaction([deleteUsers])
+
       await prisma.users.create({ data: userPayloadDB })
     })
 
     afterAll(async () => {
       const deleteUsers = prisma.users.deleteMany()
-
       await prisma.$transaction([deleteUsers])
     })
 
