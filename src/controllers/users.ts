@@ -25,4 +25,13 @@ export class UsersController {
       return res.status(error.status).json({ message: error.message })
     }
   }
+
+  public async updateName (req: Request, res: Response): Promise<any> {
+    try {
+      await this.service.updateName(req.body.name, req.params.email)
+      return res.status(204).json('Name successfully updated')
+    } catch (error) {
+      return res.status(error.status).json({ message: error.message })
+    }
+  }
 }
