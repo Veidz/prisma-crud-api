@@ -15,20 +15,45 @@ const usersWithoutPassword: UsersWithoutPassword[] = [
   }
 ]
 
-describe('GET /users', () => {
-  beforeAll(async () => {
-    await prisma.users.create({ data: userPayloadDB })
+const userWithoutPassword: UsersWithoutPassword = {
+  name: 'any_name',
+  email: 'any_email@email.com'
+}
+
+describe('ROUTE /users', () => {
+  describe('GET /users', () => {
+    beforeAll(async () => {
+      await prisma.users.create({ data: userPayloadDB })
+    })
+
+    afterAll(async () => {
+      const deleteUsers = prisma.users.deleteMany()
+
+      await prisma.$transaction([deleteUsers])
+    })
+
+    test('Should return users successfully', async () => {
+      const sut = new UsersService()
+      const users = await sut.findMany()
+      expect(users).toEqual(usersWithoutPassword)
+    })
   })
 
-  afterAll(async () => {
-    const deleteUsers = prisma.users.deleteMany()
+  describe('GET /users/:name', () => {
+    beforeAll(async () => {
+      await prisma.users.create({ data: userPayloadDB })
+    })
 
-    await prisma.$transaction([deleteUsers])
-  })
+    afterAll(async () => {
+      const deleteUsers = prisma.users.deleteMany()
 
-  test('Should return users successfully', async () => {
-    const sut = new UsersService()
-    const users = await sut.findMany()
-    expect(users).toEqual(usersWithoutPassword)
+      await prisma.$transaction([deleteUsers])
+    })
+
+    test('Should return user successfully', async () => {
+      const sut = new UsersService()
+      const users = await sut.findByEmail('any_email@email.com')
+      expect(users).toEqual(userWithoutPassword)
+    })
   })
 })
