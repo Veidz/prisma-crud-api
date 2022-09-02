@@ -1,8 +1,22 @@
-FROM node:16.17.0
+FROM node:14 AS builder
+
 WORKDIR /app
-COPY . .
+
+COPY package*.json ./
+COPY prisma ./prisma/
+
 RUN npm install
-# RUN npx prisma migrate dev
-RUN npm run prisma:start
-RUN npm run prisma:migrate
-CMD [ "npm", "start" ]
+
+COPY . .
+
+# RUN npm run build
+
+FROM node:14
+
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+# COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma ./prisma
+
+EXPOSE 3001
+CMD [  "npm", "run", "start:migrate:prod" ]
