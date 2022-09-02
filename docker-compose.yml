@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  node:
+    build: ./src
+    user: node
+    working_dir: /app
+    volumes:
+      - ./:/app
+    container_name: crud_prisma_api
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    depends_on:
+      - prisma
+    ports:
+      - 3001:3001
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      HOSTNAME: prisma
+  prisma:
+    container_name: crud_prisma_db
+    image: prismagraphql/prisma:__LATEST_PRISMA_VERSION__
+    platform: linux/x86_64
+    restart: always
+    ports:
+      - 4466:4466
+    environment: 
+        PRISMA_ROOT_PASSWORD: __YOUR_DATABASE_PASSWORD__
+networks:
+  default:
+    name: crud_prisma_net
