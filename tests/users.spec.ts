@@ -2,7 +2,7 @@ import { Users } from '@prisma/client'
 import { prismaMock } from '../src/database/singleton'
 import { UsersService } from '../src/services/users'
 import { UsersWithoutPassword } from '../src/protocols'
-import { NotFound } from '../src/errors'
+import { BadRequest, NotFound } from '../src/errors'
 
 const usersDB: Users[] = [
   {
@@ -50,6 +50,15 @@ describe('UsersService', () => {
         await sut.findByEmail('any_email@email.com')
       } catch (error) {
         expect(error).toEqual(new NotFound('No user found'))
+      }
+    })
+
+    test('Should return correct error if no email is provided', async () => {
+      try {
+        const sut = new UsersService()
+        await sut.findByEmail('')
+      } catch (error) {
+        expect(error).toEqual(new BadRequest('No email provided'))
       }
     })
   })
