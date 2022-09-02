@@ -26,14 +26,13 @@ export class UsersService {
     return userWithoutPassword
   }
 
-  public async updateName (name: string, email: string): Promise<any> {
+  public async updateName (name: string, email: string): Promise<void> {
     if (!name) throw new BadRequest('No name provided')
     if (!email) throw new BadRequest('No email provided')
 
     const user = await findUnique(email)
     if (!user) throw new NotFound('No user found')
 
-    const updatedUser = await updateName(name, email)
-    return updatedUser
+    await updateName(name, email)
   }
 }
