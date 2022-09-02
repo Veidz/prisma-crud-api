@@ -5,7 +5,7 @@ import { exclude, findMany, findUnique, updateName } from '../repository'
 export class UsersService {
   public async findMany (): Promise<UsersWithoutPassword[]> {
     const users = await findMany()
-    if (!users) throw new NotFound('No users in the database')
+    if (!users?.length) throw new NotFound('No users in the database')
 
     const usersWithoutPassword: UsersWithoutPassword[] = []
     for (const user of users) {
