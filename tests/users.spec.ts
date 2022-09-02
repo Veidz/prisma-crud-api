@@ -62,4 +62,34 @@ describe('UsersService', () => {
       }
     })
   })
+
+  describe('updateName method', () => {
+    test('Should return correct error if no name is provided', async () => {
+      try {
+        const sut = new UsersService()
+        await sut.updateName('', 'any_email@email.com')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No name provided'))
+      }
+    })
+
+    test('Should return correct error if no email is provided', async () => {
+      try {
+        const sut = new UsersService()
+        await sut.updateName('any_name', '')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No email provided'))
+      }
+    })
+
+    test('Should return correct error if no user is found', async () => {
+      try {
+        const sut = new UsersService()
+        jest.spyOn(prismaMock.users, 'findUnique').mockResolvedValue(null)
+        await sut.updateName('any_name', 'any_email@email.com')
+      } catch (error) {
+        expect(error).toEqual(new NotFound('No user found'))
+      }
+    })
+  })
 })
