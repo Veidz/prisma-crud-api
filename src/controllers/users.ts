@@ -29,7 +29,16 @@ export class UsersController {
   public async updateName (req: Request, res: Response): Promise<any> {
     try {
       await this.service.updateName(req.body.name, req.params.email)
-      return res.status(204).json('Name successfully updated')
+      return res.status(200).json('Name successfully updated')
+    } catch (error) {
+      return res.status(error.status).json({ message: error.message })
+    }
+  }
+
+  public async exclude (req: Request, res: Response): Promise<any> {
+    try {
+      await this.service.exclude(req.params.email)
+      return res.status(200).json('User successfully deleted')
     } catch (error) {
       return res.status(error.status).json({ message: error.message })
     }

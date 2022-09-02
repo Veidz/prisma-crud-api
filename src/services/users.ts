@@ -1,6 +1,6 @@
 import { BadRequest, NotFound } from '../errors'
 import { UsersWithoutPassword } from '../protocols'
-import { findMany, findUnique, updateName } from '../repository'
+import { exclude, findMany, findUnique, updateName } from '../repository'
 
 export class UsersService {
   public async findMany (): Promise<UsersWithoutPassword[]> {
@@ -34,5 +34,14 @@ export class UsersService {
     if (!user) throw new NotFound('No user found')
 
     await updateName(name, email)
+  }
+
+  public async exclude (email: string): Promise<void> {
+    if (!email) throw new BadRequest('No email provided')
+
+    const user = await findUnique(email)
+    if (!user) throw new NotFound('No user found')
+
+    await exclude(email)
   }
 }

@@ -6,5 +6,6 @@ const usersRoute = Router()
 usersRoute.get('/users', users.findMany)
 usersRoute.get('/users/:email', users.findByEmail)
 usersRoute.put('/users/:email', users.updateName)
+usersRoute.delete('/users/:email', users.exclude)
 
 export { usersRoute }
