@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PRISMA CRUD API",
+    "description": "This is a simple NodeJS CRUD API using Prisma ORM",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Test API"
+    }
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "User registration",
+        "description": "This route is responsible for creating a new user",
+        "tags": ["SignUp"]
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "description": "This route is responsible for getting data from all users",
+        "tags": ["Users"]
+      }
+    },
+    "/users/:email": {
+      "get": {
+        "summary": "Get a user by their email",
+        "description": "This route is responsible for getting a user's data by email",
+        "tags": ["Users"]
+      },
+      "put": {
+        "summary": "Update a user by their email",
+        "description": "This route is responsible for updating a user's name through their email",
+        "tags": ["Users"]
+      },
+      "delete": {
+        "summary": "Delete a user by their email",
+        "description": "This route is responsible for deleting a user by their email",
+        "tags": ["Users"]
+      }
+    }
+  }
+}

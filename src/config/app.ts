@@ -1,5 +1,5 @@
 import express from 'express'
-import { signUpRoute, usersRoute } from '../routes'
+import { docsRoute, signUpRoute, usersRoute } from '../routes'
 
 class App {
   public app: express.Express
@@ -20,6 +20,7 @@ class App {
 
     this.app.use(express.json())
     this.app.use(accessControl)
+    this.app.use(docsRoute)
     this.app.use(signUpRoute)
     this.app.use(usersRoute)
   }
