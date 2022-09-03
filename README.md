@@ -1,7 +1,7 @@
 <h1 align="center"> CRUD Node API using Prisma </h1>
 
 <details font-size=200>
- <summary><h2><samp>&#9776; 🛠️ Tools</samp></h2></summary>
+ <summary><h2><samp>🛠️ Tools</samp></h2></summary>
 
   <a href="https://www.prisma.io/"><img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/287/square_480/prismaHD.png" width=20 /> Prisma</a>
 
@@ -16,5 +16,23 @@
   <a href="https://www.npmjs.com/package/bcrypt"><img src="https://img.stackshare.io/package/19054/default_2be036aaca5c71baf790e00f1ef80dd37a625905.png" width=20 /> Bcrypt</a>
  
  <a href="https://www.docker.com/"><img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" width=20 /> Docker</a>
+ 
+</details>
+
+<details font-size=200>
+ <summary><h2><samp>🐳 Run with Docker</samp></h2></summary>
+ 
+ Clone the project: `git clone git@github.com:Veidz/prisma-crud-api.git` <br/><br/>
+ Run compose: `npm run compose:up`
+ 
+</details>
+
+<details font-size=200>
+ <summary><h2><samp>🏗️ Run locally</samp></h2></summary>
+
+ Clone the project: `git clone git@github.com:Veidz/prisma-crud-api.git` <br/><br/>
+ Install dependecies: `npm install` <br/><br/>
+ Init prisma: `npm run prisma` <br/><br/>
+ Init project: `npm start` or `npm start:dev` <br/><br/>
  
 </details>
