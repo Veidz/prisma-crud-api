@@ -1,13 +1,11 @@
 <h1 align="center"> CRUD Node API using Prisma </h1>
 
 <details font-size=200>
- <summary><h2><samp>&#9776; 🛠️ Tecnologias utilizadas</samp></h2></summary>
+ <summary><h2><samp>&#9776; 🛠️ Tools</samp></h2></summary>
 
   <a href="https://www.prisma.io/"><img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/287/square_480/prismaHD.png" width=20 /> Prisma</a>
 
   <a href="https://nodejs.org"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" width=20 /> Express</a>
-
-  <a href="https://devdocs.io/javascript/"><img src="https://trickdroid.org/wp-content/uploads/2019/12/Sobre-JavaScript-Definicao-Historia-Usos-e-Forcas.png" width=20 /> Javascript</a>
 
   <a href="https://jestjs.io/pt-BR/docs/api"><img src="https://seeklogo.com/images/J/jest-logo-F9901EBBF7-seeklogo.com.png" width=20 /> Jest </a>
   
