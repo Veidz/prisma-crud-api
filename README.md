@@ -2,7 +2,9 @@
 
 <details font-size=200>
  <summary><h2><samp>🛠️ Tools</samp></h2></summary>
-
+ 
+  <br/> 
+ 
   <a href="https://www.prisma.io/"><img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/287/square_480/prismaHD.png" width=20 /> Prisma</a>
 
   <a href="https://nodejs.org"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" width=20 /> Express</a>
@@ -21,6 +23,8 @@
 
 <details font-size=200>
  <summary><h2><samp>🐳 Run with Docker</samp></h2></summary>
+  
+  <br/>
  
  Clone the project: `git clone git@github.com:Veidz/prisma-crud-api.git` <br/><br/>
  Run compose: `npm run compose:up`
@@ -29,10 +33,23 @@
 
 <details font-size=200>
  <summary><h2><samp>🏗️ Run locally</samp></h2></summary>
-
+ 
+  <br/> 
+ 
  Clone the project: `git clone git@github.com:Veidz/prisma-crud-api.git` <br/><br/>
  Install dependecies: `npm install` <br/><br/>
  Init prisma: `npm run prisma` <br/><br/>
  Init project: `npm start` or `npm start:dev` <br/><br/>
+ 
+</details>
+
+<details font-size=200>
+ <summary><h2><samp>📰 Docs</samp></h2></summary>
+  
+  <br/> 
+ 
+ After init the project go to `http://localhost:YOUR_PORT/api-docs` to see swagger api documentation
+ 
+ The default `PORT is 3001`
  
 </details>
