@@ -52,4 +52,6 @@
  
  The default `PORT is 3001`
  
+ Go to `.env` to change the PORT by alter the `APP_PORT` variable
+ 
 </details>
