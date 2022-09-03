@@ -15,6 +15,6 @@
   
   <a href="https://www.npmjs.com/package/bcrypt"><img src="https://img.stackshare.io/package/19054/default_2be036aaca5c71baf790e00f1ef80dd37a625905.png" width=20 /> Bcrypt</a>
  
- <a href="https://www.docker.com/"><img src="https://d1.awsstatic.com/acs/characters/Logos/Docker-Logo_Horizontel_279x131.b8a5c41e56b77706656d61080f6a0217a3ba356d.png" width=20 /> Bcrypt</a>
+ <a href="https://www.docker.com/"><img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" width=20 /> Docker</a>
  
 </details>
